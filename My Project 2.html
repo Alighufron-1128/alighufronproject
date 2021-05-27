@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <title>Project Bagian 2</title>
+        <style>
+            .tengah{
+            background-color: cornflowerblue;
+            background-position:center;
+            width:auto;
+            height:auto;
+         
+            }
+            .table{
+                color: blue;
+                background: aqua;
+                margin:auto;
+
+            }
+        </style>
+    </head>
+    <body class="tengah">
+        <table class="table" border="1">
+            <h2 style="text-align: center;">Kasir</h2>
+            <tr>    
+                <th>Barang yang di Beli</th>
+                <th><select id="status" onchange="total()">
+                    <option>Taro</option>
+                    <option>Larutan Kaleng</option>
+                    <option>Adem Sari Kaleng</option>
+                    <option>Roti</option>
+                    <option>Snack</option>
+                    <option>Pop Mie</option>
+                </select></th>
+            </tr>
+
+            <tr>    
+                <th>Harga Barang</th>
+                <th><input type="number"  id="harga" onchange="total()"></th>
+            </tr>
+         
+            <tr>    
+                <th>Jumlah Beli</th>    
+                <th><input type="number" id="jumlah"  value="0" onchange="total()"></th>
+            </tr>
+            
+            <tr>    
+                <th>Jumlah Total</th>
+                <th><input type="text" style="background: yellow" id="total" disabled></th>
+            </tr>
+         
+            <tr>    
+                <th>Jumlah Bayar</th>    
+                <th><input type="number" id="bayar" onchange="total()"></th>
+            </tr>
+            
+            <tr>    
+                <th>Kembalian</th>
+                <th><input type="text" style="background: yellow" id="total1" disabled></th>
+            </tr>
+                  
+            <tr>
+                <th><input type="button" style="background-color: white;"  onclick="window.print()" value="CETAK"></th>
+            </tr>
+            
+            <tr>   
+                <table class="table" width="300" height="201px" border="8">
+                <th><label align="landscape"  id="cetak" ></label></th>
+                </table>
+            </tr>         
+            </table>
+
+            <script type="text/javascript">
+            function total() {
+                var harga =  parseInt(document.getElementById('harga').value);
+                var jumlah_beli =  parseInt(document.getElementById('jumlah').value);
+                var pembayaran =  parseInt(document.getElementById('bayar').value);
+                var jenis = document.getElementById("status").value;
+                var jumlah_harga = harga * jumlah_beli;
+                document.getElementById('total').value = jumlah_harga;
+         
+                var kembali = pembayaran - jumlah_harga;
+                document.getElementById('total1').value = kembali;
+           
+                var cetak = "Barang yang di Beli   : "+jenis+"</br>"+
+                            "Harga Barang  : "+harga+"</br>"+
+                            "Jumlah Beli  : "+jumlah_beli+"</br>"+
+                            "Jumlah Total  : "+jumlah_harga+"</br>"+
+                            "Jumlah Bayar  : "+pembayaran+"</br>"+
+                            "Kembalian  : "+kembali;
+                document.getElementById("cetak").innerHTML=cetak;
+            }
+           </script>
+          </div>
+    </body>
+</html>
